@@ -1,17 +1,14 @@
-package com.example.moviesapp.data.viewmodels
+package com.example.movieapp.data.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moviesapp.data.api.MovieClient
-import com.example.moviesapp.data.api.model.MovieDetails
-import com.example.moviesapp.data.api.model.ProductionCountry
-import com.example.moviesapp.data.api.videos.MovieTrailerResponse
-import com.example.moviesapp.data.api.videos.ResultTrailerResponse
-import com.example.moviesapp.data.base.apiKey
-import com.example.moviesapp.ui.details.repository.DetailsRepository
+import com.example.movieapp.data.api.model.MovieDetails
+import com.example.movieapp.data.api.model.ProductionCountry
+import com.example.movieapp.data.api.videos.ResultTrailerResponse
+import com.example.movieapp.ui.details.repository.DetailsRepository
 import io.reactivex.observers.DisposableSingleObserver
 //import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Scheduler

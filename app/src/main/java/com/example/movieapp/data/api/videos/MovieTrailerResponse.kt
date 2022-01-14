@@ -1,4 +1,4 @@
-package com.example.moviesapp.data.api.videos
+package com.example.movieapp.data.api.videos
 
 
 data class MovieTrailerResponse(

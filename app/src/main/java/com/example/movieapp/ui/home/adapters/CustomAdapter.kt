@@ -1,4 +1,4 @@
-package com.example.moviesapp.ui.home.adapters
+package com.example.movieapp.ui.home.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,10 +10,11 @@ import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.moviesapp.data.api.model.Result
-import com.example.moviesapp.data.base.BASE_IMAGE_URL
+import com.example.movieapp.data.api.model.Result
+import com.example.movieapp.data.base.BASE_IMAGE_URL
 import coil.load
 import com.example.movieapp.R
+import com.example.movieapp.databinding.RvItemDesignBinding
 
 
 class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
@@ -44,7 +45,7 @@ crossfade(true)
         }
 
 
-        holder.container?.setOnClickListener {
+        holder.movieContainer?.setOnClickListener {
             val bundle= bundleOf("posterPath" to movie?.posterPath)
             bundle.putInt("id" ,movie?.id!!)
             it.findNavController().navigate(action!!,bundle,null,null)
@@ -64,9 +65,14 @@ crossfade(true)
     }
 
     class ViewHolder(ItemView:View) :RecyclerView.ViewHolder(ItemView) {
-        val container:CardView=itemView.findViewById(R.id.movieContainer)
-  val poster :ImageView? =itemView.findViewById(R.id.poster_iv)
-  val title :TextView? =itemView.findViewById(R.id.title_tv)
-  val rating :TextView? =itemView.findViewById(R.id.rating_tv)
+        private val binding=RvItemDesignBinding.bind(itemView)
+        val movieContainer=binding.movieContainer
+        val poster=binding.posterIv
+        val title=binding.titleTv
+        val rating=binding.ratingTv
+//        val container:=itemView.findViewById(R.id.movieContainer)
+//  val poster :ImageView? =itemView.findViewById(R.id.poster_iv)
+//  val title :TextView? =itemView.findViewById(R.id.title_tv)
+//  val rating :TextView? =itemView.findViewById(R.id.rating_tv)
     }
 }

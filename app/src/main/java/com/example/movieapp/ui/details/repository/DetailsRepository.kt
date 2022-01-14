@@ -1,10 +1,10 @@
-package com.example.moviesapp.ui.details.repository
+package com.example.movieapp.ui.details.repository
 
-import com.example.moviesapp.data.api.MovieClient
-import com.example.moviesapp.data.api.MovieInterface
-import com.example.moviesapp.data.api.model.MovieDetails
-import com.example.moviesapp.data.api.model.ProductionCountry
-import com.example.moviesapp.data.api.videos.ResultTrailerResponse
+import com.example.movieapp.data.api.MovieClient
+import com.example.movieapp.data.api.MovieInterface
+import com.example.movieapp.data.api.model.MovieDetails
+import com.example.movieapp.data.api.model.ProductionCountry
+import com.example.movieapp.data.api.videos.ResultTrailerResponse
 
 class DetailsRepository {
     private val TAG="DetailsRepository"

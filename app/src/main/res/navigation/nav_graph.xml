@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/popularFragment"
-        android:name="com.example.moviesapp.tablayout.PopularFragment"
+        android:name="com.example.movieapp.tablayout.PopularFragment"
         android:label="fragment_popular"
         tools:layout="@layout/fragment_popular" >
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFragment5"
-        android:name="com.example.moviesapp.ui.details.DetailsFragment"
+        android:name="com.example.movieapp.ui.details.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" >
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/topRatedFragment"
-        android:name="com.example.moviesapp.tablayout.TopRatedFragment"
+        android:name="com.example.movieapp.tablayout.TopRatedFragment"
         android:label="fragment_top_rated"
         tools:layout="@layout/fragment_top_rated" >
         <action
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/videoPlayerFragment"
-        android:name="com.example.moviesapp.ui.playing.VideoPlayerFragment"
+        android:name="com.example.movieapp.ui.playing.VideoPlayerFragment"
         android:label="fragment_video_player"
         tools:layout="@layout/fragment_video_player" />
 </navigation>

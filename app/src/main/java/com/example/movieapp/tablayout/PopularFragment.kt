@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentPopularBinding
-import com.example.moviesapp.data.viewmodels.MovieListViewModel
-import com.example.moviesapp.ui.home.adapters.CustomAdapter
+import com.example.movieapp.data.viewmodels.MovieListViewModel
+import com.example.movieapp.ui.home.adapters.CustomAdapter
 
 
 class PopularFragment : Fragment() ,View.OnClickListener{

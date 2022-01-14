@@ -1,4 +1,4 @@
-package com.example.moviesapp.data.api
+package com.example.movieapp.data.api
 
 
 import okhttp3.Interceptor
@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MovieClient{
     companion object{
         private var INSTANCE:Retrofit?=null
-        private const val BASE_URL="https://developers.themoviedb.org/3/"
+        private const val BASE_URL="https://api.themoviedb.org/3/"
 
         fun getInstance():Retrofit{
             if (INSTANCE ==null){

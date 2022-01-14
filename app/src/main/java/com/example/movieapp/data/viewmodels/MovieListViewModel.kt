@@ -1,12 +1,12 @@
-package com.example.moviesapp.data.viewmodels
+package com.example.movieapp.data.viewmodels
 
 import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moviesapp.data.api.model.Result
-import com.example.moviesapp.ui.home.HomeRepository
+import com.example.movieapp.data.api.model.Result
+import com.example.movieapp.ui.home.HomeRepository
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch

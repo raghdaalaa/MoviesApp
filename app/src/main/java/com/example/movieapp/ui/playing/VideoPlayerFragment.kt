@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.movieapp.databinding.FragmentVideoPlayerBinding
-import com.example.moviesapp.data.base.YouTubeBase
+import com.example.movieapp.data.base.YouTubeBase
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player

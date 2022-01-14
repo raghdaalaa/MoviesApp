@@ -1,4 +1,4 @@
-package com.example.moviesapp.data.base
+package com.example.movieapp.data.base
 
 
     const val apiKey = "43dd72d8d79dcbce00c80be4a7c4a962"

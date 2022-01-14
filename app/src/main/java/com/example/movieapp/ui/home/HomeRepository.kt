@@ -1,8 +1,8 @@
-package com.example.moviesapp.ui.home
+package com.example.movieapp.ui.home
 
-import com.example.moviesapp.data.api.MovieClient
-import com.example.moviesapp.data.api.MovieInterface
-import com.example.moviesapp.data.api.model.Result
+import com.example.movieapp.data.api.MovieClient
+import com.example.movieapp.data.api.MovieInterface
+import com.example.movieapp.data.api.model.Result
 
 
 class HomeRepository {
