@@ -1,26 +1,15 @@
 package com.example.movieapp.data.viewmodels
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movieapp.data.api.model.MovieDetails
-import com.example.movieapp.data.api.model.ProductionCountry
+import com.example.movieapp.data.api.model.ProductionCompany
 import com.example.movieapp.data.api.videos.ResultTrailerResponse
 import com.example.movieapp.ui.details.repository.DetailsRepository
-import io.reactivex.observers.DisposableSingleObserver
 //import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Scheduler
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.annotations.NonNull
 //import io.reactivex.rxjava3.disposables.Disposable
 //import io.reactivex.rxjava3.schedulers.Schedulers
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Function
-import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
@@ -34,7 +23,7 @@ class DetailsViewModel :ViewModel() {
 
     var trailerId = MutableLiveData<ResultTrailerResponse?>()
     var movieDetails = MutableLiveData<MovieDetails?>()
-    var movieCountry = MutableLiveData<ProductionCountry?>()
+    var movieCountry = MutableLiveData<ProductionCompany?>()
 
 
     fun getTrailerMovie(id:Int) {

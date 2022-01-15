@@ -21,7 +21,9 @@ import com.flaviofaria.kenburnsview.RandomTransitionGenerator
 
 class DetailsFragment : Fragment() {
     private lateinit var moviesDetailsViewModel: DetailsViewModel
-    private lateinit var binding: FragmentDetailsBinding
+    //private lateinit var binding: FragmentDetailsBinding
+    private  var _binding: FragmentDetailsBinding?=null
+    private val binding get() = _binding!!
     private lateinit var trailerId: String
 
 
@@ -35,26 +37,27 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         moviesDetailsViewModel = ViewModelProvider(this)[DetailsViewModel::class.java]
-        binding = FragmentDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val posterPath=arguments?.get("posterPath").toString()
         val id=arguments?.getInt("id")!!
 
         moviesDetailsViewModel.getMoviesDetails(id)
+        moviesDetailsViewModel.getMovieCountry(id)
+
+
         binding.moviesBackGroundImage.load(BASE_IMAGE_URL +posterPath)
         val backGroundImage=binding.moviesBackGroundImage
         val interpolator= LinearInterpolator()
         val generator = RandomTransitionGenerator(10000,interpolator)
         backGroundImage.setTransitionGenerator(generator)
         backGroundImage.load(BASE_IMAGE_URL +posterPath)
-
-
-        moviesDetailsViewModel.getMovieCountry(id)
 
 
         binding.playButton.setOnClickListener {
@@ -74,17 +77,22 @@ class DetailsFragment : Fragment() {
         })
 
         moviesDetailsViewModel.movieDetails.observe(viewLifecycleOwner,{
-            binding.movieName.text=it?.title
-            binding.overviewText.text=it?.overview
+            binding.movieOverViewTextView.text=it?.overview
+            binding.currentPointTextView.text=it?.voteAverage.toString()
+            binding.movieCountry.text=it?.title  //test
         })
 
-        moviesDetailsViewModel.movieCountry.observe(viewLifecycleOwner,{
-            binding.movieCountry.text=it?.name
-        })
+//        moviesDetailsViewModel.movieCountry.observe(viewLifecycleOwner,{
+//            binding.movieCountry.text=it?.name
+//        })
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-    }
+//    override fun onDetach() {
+//        super.onDetach()
+//        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+//    }
+override fun onDestroyView() {
+    super.onDestroyView()
+    _binding = null
+}
 }

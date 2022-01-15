@@ -3,7 +3,7 @@ package com.example.movieapp.ui.details.repository
 import com.example.movieapp.data.api.MovieClient
 import com.example.movieapp.data.api.MovieInterface
 import com.example.movieapp.data.api.model.MovieDetails
-import com.example.movieapp.data.api.model.ProductionCountry
+import com.example.movieapp.data.api.model.ProductionCompany
 import com.example.movieapp.data.api.videos.ResultTrailerResponse
 
 class DetailsRepository {
@@ -33,7 +33,7 @@ class DetailsRepository {
         return resultsVideoItem
     }
 
-    suspend fun getMoviesCountry(id:Int):ProductionCountry?{
+    suspend fun getMoviesCountry(id:Int): ProductionCompany?{
         val client=
             MovieClient.getInstance().create(MovieInterface::class.java).getMovieCountry(id,API_KEY)
         client.isSuccessful

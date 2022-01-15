@@ -2,10 +2,8 @@ package com.example.movieapp.data.api
 
 import com.example.movieapp.data.api.model.MovieDetails
 import com.example.movieapp.data.api.model.MovieResponseModel
-import com.example.movieapp.data.api.model.ProductionCountry
+import com.example.movieapp.data.api.model.ProductionCompany
 import com.example.movieapp.data.api.videos.MovieTrailerResponse
-import io.reactivex.Single
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -36,7 +34,7 @@ interface MovieInterface {
     suspend fun getMovieCountry(
         @Path("movie_id") movie_id: Int,
         @Query("api_key") api_key: String
-    ): Response<ProductionCountry>
+    ): Response<ProductionCompany>
 
     @GET("movie/{movie_id}/videos?")
    suspend fun getVideoTrailer(
