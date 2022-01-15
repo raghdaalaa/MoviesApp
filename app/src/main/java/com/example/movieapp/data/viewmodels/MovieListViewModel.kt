@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.Response
 
 class MovieListViewModel :ViewModel(){
-
+private val TAG="MoviesViewModel"
 private val repository =HomeRepository()
     var listPopular=MutableLiveData<List<Result>>()
     var listTopRated=MutableLiveData<List<Result>>()

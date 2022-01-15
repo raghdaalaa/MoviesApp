@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentPopularBinding
@@ -54,6 +56,9 @@ class PopularFragment : Fragment() ,View.OnClickListener{
     }
 
     override fun onClick(p0: View?) {
-        TODO("Not yet implemented")
+        when(p0?.id){
+            R.id.movieContainer -> bundleOf("position" to "popular")
+        }
+        p0?.findNavController()?.navigate(R.id.action_popularFragment_to_detailsFragment5)
     }
 }

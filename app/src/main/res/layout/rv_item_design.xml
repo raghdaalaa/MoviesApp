@@ -1,89 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/movieContainer"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_marginBottom="15dp"
+    app:contentPadding="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="136dp">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/moveImageContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/poster_iv"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_120sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/titleContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/title_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:textSize="@dimen/_14sdp"
-                android:maxLines="1"
-                app:layout_constraintBottom_toTopOf="@id/rating_tv"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+        <ImageView
+            android:id="@+id/poster_iv"
+            android:layout_width="104dp"
+            android:layout_height="104dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
 
 
-            <ImageView
-                android:id="@+id/starview"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:scaleType="fitStart"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:layout_marginRight="@dimen/_4sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/rating_tv"
-                app:layout_constraintTop_toBottomOf="@+id/title_tv"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/star" />
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toRightOf="@id/poster_iv"
+            app:layout_constraintTop_toTopOf="@id/poster_iv"
+            tools:text="Movie Title" />
 
-
-            <TextView
-                android:id="@+id/rating_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_9sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/starview"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title_tv" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/rating_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="bold"
+            android:textColor="@color/grey"
+            android:textSize="13sp"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="@+id/title_tv"
+            app:layout_constraintTop_toBottomOf="@id/title_tv"
+           android:text="10"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

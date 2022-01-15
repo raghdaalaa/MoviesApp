@@ -2,6 +2,7 @@ package com.example.movieapp.ui.home.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.RoundedCorner
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.data.api.model.Result
 import com.example.movieapp.data.base.BASE_IMAGE_URL
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.example.movieapp.R
 import com.example.movieapp.databinding.RvItemDesignBinding
 
@@ -34,15 +36,15 @@ class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val movie=mList?.get(position)
-        holder.title?.text=movie?.title
-        holder.rating?.text=movie?.getRating()
+        holder.title.text=movie?.title
+        holder.rating.text=movie?.voteAverage.toString()
 
-        if(movie?.posterPath !== ""){
             holder.poster?.load(BASE_IMAGE_URL + movie?.posterPath) {
 crossfade(true)
                 crossfade(500)
+                transformations(RoundedCornersTransformation(20f))
             }
-        }
+
 
 
         holder.movieContainer?.setOnClickListener {

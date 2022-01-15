@@ -27,10 +27,4 @@ data class Result(
     @SerializedName("vote_count")
     val voteCount: Int
 )
-{
-    fun getRating(): String {
-        val rating = (voteAverage * 10).toInt()
-        return "$rating%"
-    }
-}
 

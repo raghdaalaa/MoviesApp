@@ -6,12 +6,13 @@ import com.example.movieapp.data.api.model.Result
 
 
 class HomeRepository {
-    val API_KEY="2f5c7f8a5b120242529ccef0a81ab720"
     private val TAG="HomeRepository"
+    val API_KEY="2f5c7f8a5b120242529ccef0a81ab720"
 
     suspend fun getPopular():List<Result>?{
         val client=
             MovieClient.getInstance().create(MovieInterface::class.java).getPopularMovies(API_KEY,1)
+        client.isSuccessful
         return client.body()?.results
     }
 
