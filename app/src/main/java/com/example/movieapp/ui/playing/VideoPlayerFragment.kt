@@ -4,16 +4,22 @@ import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log
+import android.util.SparseArray
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.movieapp.databinding.FragmentVideoPlayerBinding
 import com.example.movieapp.data.base.YouTubeBase
+import com.example.movieapp.ui.MainActivity
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.source.MergingMediaSource
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.util.MimeTypes
 import com.google.android.exoplayer2.util.Util
 
@@ -21,6 +27,7 @@ import com.google.android.exoplayer2.util.Util
 class VideoPlayerFragment : Fragment() {
 
     private lateinit var youtubeLink: String
+    private val playbackStateListener:Player.EventListener=playbackStateListener()
     private lateinit var binding: FragmentVideoPlayerBinding
     var player: ExoPlayer? = null
 
@@ -44,34 +51,35 @@ class VideoPlayerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        youtubeLink = YouTubeBase + arguments?.get("url").toString()
+        youtubeLink = YouTubeBase + arguments?.get("key").toString()
+        initializePlayer()
 
     }
 
+private fun initializePlayer(){
+    val trackSelector = DefaultTrackSelector(requireContext()).apply {
+        setParameters(buildUponParameters())
+        //.setMaxVideoSize())
+    }
 
-    private fun initializePlayer() {
-        val trackSelector = DefaultTrackSelector(requireContext()).apply {
-            setParameters(buildUponParameters())
-            //.setMaxVideoSize())
+    player = ExoPlayer.Builder(requireContext())
+        .setTrackSelector(trackSelector)
+        .build()
+        .also { exoPlayer ->
+            binding.videoView.player = exoPlayer
+
+            val mediaItem = MediaItem.Builder()
+                .setUri(youtubeLink)
+                .setMimeType(MimeTypes.APPLICATION_MPD)
+                .build()
+            exoPlayer.setMediaItem(mediaItem)
+            exoPlayer.playWhenReady = playWhenReady
+            exoPlayer.seekTo(currentWindow, playbackPosition)
+            exoPlayer.addListener(playbackStateListener)
+            exoPlayer.prepare()
         }
+}
 
-        player = ExoPlayer.Builder(requireContext())
-            .setTrackSelector(trackSelector)
-            .build()
-            .also { exoPlayer ->
-                binding.videoView.player = exoPlayer
-
-                val mediaItem = MediaItem.Builder()
-                    .setUri(YouTubeBase)
-                    .setMimeType(MimeTypes.APPLICATION_MPD)
-                    .build()
-                exoPlayer.setMediaItem(mediaItem)
-                exoPlayer.playWhenReady = playWhenReady
-                exoPlayer.seekTo(currentWindow, playbackPosition)
-                exoPlayer.addListener(playbackStateListener())
-                exoPlayer.prepare()
-            }
-    }
 
     public override fun onStart() {
         super.onStart()

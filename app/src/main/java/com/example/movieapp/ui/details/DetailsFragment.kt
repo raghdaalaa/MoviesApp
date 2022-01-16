@@ -50,6 +50,7 @@ class DetailsFragment : Fragment() {
 
         moviesDetailsViewModel.getMoviesDetails(id)
         moviesDetailsViewModel.getMovieCountry(id)
+        moviesDetailsViewModel.getTrailerMovie(id)
 
 
         binding.moviesBackGroundImage.load(BASE_IMAGE_URL +posterPath)
@@ -79,7 +80,7 @@ class DetailsFragment : Fragment() {
         moviesDetailsViewModel.movieDetails.observe(viewLifecycleOwner,{
             binding.movieOverViewTextView.text=it?.overview
             binding.currentPointTextView.text=it?.voteAverage.toString()
-            binding.movieCountry.text=it?.title  //test
+            binding.movieCountry.text=it?.title //test
         })
 
 //        moviesDetailsViewModel.movieCountry.observe(viewLifecycleOwner,{
