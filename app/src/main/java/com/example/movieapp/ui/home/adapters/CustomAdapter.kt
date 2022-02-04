@@ -1,6 +1,6 @@
 package com.example.movieapp.ui.home.adapters
-
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.RoundedCorner
 import android.view.View
@@ -21,6 +21,7 @@ import com.example.movieapp.databinding.RvItemDesignBinding
 
 class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
+    private val TAG = "CustomAdapter"
     private var mList: List<Result>? = null
     private var action: Int? = null
     var context: Context? = null
@@ -60,11 +61,17 @@ crossfade(true)
         return 0
     }
 
-    fun setMoviesData(mList:List<Result> ,action:Int){
+    fun setPopular(mList:List<Result>,action: Int){
         this.mList=mList
         this.action=action
         notifyDataSetChanged()
     }
+
+//    fun setTopRated(mList:List<Result>,action: Int){
+//        this.mList=mList
+//        this.action=action
+//        notifyDataSetChanged()
+//    }
 
     class ViewHolder(ItemView:View) :RecyclerView.ViewHolder(ItemView) {
         private val binding=RvItemDesignBinding.bind(itemView)
@@ -72,9 +79,6 @@ crossfade(true)
         val poster=binding.posterIv
         val title=binding.titleTv
         val rating=binding.ratingTv
-//        val container:=itemView.findViewById(R.id.movieContainer)
-//  val poster :ImageView? =itemView.findViewById(R.id.poster_iv)
-//  val title :TextView? =itemView.findViewById(R.id.title_tv)
-//  val rating :TextView? =itemView.findViewById(R.id.rating_tv)
+
     }
 }

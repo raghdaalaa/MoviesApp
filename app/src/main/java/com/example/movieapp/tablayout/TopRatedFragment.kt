@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentTopRatedBinding
@@ -14,7 +16,7 @@ import com.example.movieapp.data.viewmodels.MovieListViewModel
 import com.example.movieapp.ui.home.adapters.CustomAdapter
 
 
-class TopRatedFragment : Fragment() ,View.OnClickListener{
+class TopRatedFragment : Fragment(){
 
     private val TAG="TopRatedFragment"
     private lateinit var homeViewModel: MovieListViewModel
@@ -45,13 +47,16 @@ class TopRatedFragment : Fragment() ,View.OnClickListener{
         binding.topRatedRv.adapter=adapterTopRated
 
         homeViewModel.listTopRated.observe(viewLifecycleOwner){
-            adapterTopRated.setMoviesData(it,R.id.action_topRatedFragment_to_detailsFragment5)
+            adapterTopRated.setPopular(it,R.id.action_topRatedFragment_to_detailsFragment5)
         }
     }
 
-    override fun onClick(p0: View?) {
-        TODO("Not yet implemented")
+//    override fun onClick(p0: View?) {
+//        when(p0?.id){
+//            R.id.movieContainer -> bundleOf("position" to "TopRated")
+//        }
+//        p0?.findNavController()?.navigate(R.id.action_topRatedFragment_to_detailsFragment5)
+//    }
     }
 
 
-}
