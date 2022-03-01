@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.data.api.model.Result
@@ -19,11 +20,10 @@ import com.example.movieapp.R
 import com.example.movieapp.databinding.RvItemDesignBinding
 
 
-class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(val listener :OnItemClick): RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     private val TAG = "CustomAdapter"
-    private var mList: List<Result>? = null
-    private var action: Int? = null
+    private var mList: ArrayList<Result>? = ArrayList()
     var context: Context? = null
 
 
@@ -39,6 +39,7 @@ class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
         val movie=mList?.get(position)
         holder.title.text=movie?.title
         holder.rating.text=movie?.voteAverage.toString()
+        holder.release_data.text=movie?.releaseDate
 
             holder.poster?.load(BASE_IMAGE_URL + movie?.posterPath) {
 crossfade(true)
@@ -49,9 +50,14 @@ crossfade(true)
 
 
         holder.movieContainer?.setOnClickListener {
-            val bundle= bundleOf("posterPath" to movie?.posterPath)
-            bundle.putInt("id" ,movie?.id!!)
-            it.findNavController().navigate(action!!,bundle,null,null)
+            movie?.id?.let { it1 -> listener.onItemClick(it1) }
+
+        }
+
+        //favorite
+        holder.favoriteIcon.setOnClickListener {
+            //shared preference -----> room is better
+            //action to favorite + bundle(id)
         }
     }
 
@@ -61,12 +67,16 @@ crossfade(true)
         return 0
     }
 
-    fun setPopular(mList:List<Result>,action: Int){
-        this.mList=mList
-        this.action=action
+    fun appendMoreMovies(mList:ArrayList<Result>){
+        this.mList?.addAll(mList)
         notifyDataSetChanged()
     }
 
+
+
+    fun clear(){
+        mList?.clear()
+    }
 //    fun setTopRated(mList:List<Result>,action: Int){
 //        this.mList=mList
 //        this.action=action
@@ -79,6 +89,12 @@ crossfade(true)
         val poster=binding.posterIv
         val title=binding.titleTv
         val rating=binding.ratingTv
+        val release_data=binding.movieReleaseDate
+        val favoriteIcon=binding.favIv
+
+    }
+    interface OnItemClick{
+        fun onItemClick(id:Int)
 
     }
 }

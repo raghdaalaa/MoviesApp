@@ -4,8 +4,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.movieapp.tablayout.favorite.ui.FavoriteFragment
+import com.example.movieapp.ui.OnNavigate
 
-class ViewPagerAdapter(fragmentManager: FragmentManager ,lifecycle: Lifecycle) :
+class ViewPagerAdapter(fragmentManager: FragmentManager ,lifecycle: Lifecycle,val onNavigate: OnNavigate) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun getItemCount(): Int {
@@ -16,13 +18,13 @@ class ViewPagerAdapter(fragmentManager: FragmentManager ,lifecycle: Lifecycle) :
 
        return when(position){
            0->{
-               PopularFragment()
+               PopularFragment(onNavigate)
            }
            1->{
-               TopRatedFragment()
+               TopRatedFragment(onNavigate)
            }
            2->{
-               FavoriteFragment()
+               FavoriteFragment(onNavigate)
            }
            else ->{
                Fragment()

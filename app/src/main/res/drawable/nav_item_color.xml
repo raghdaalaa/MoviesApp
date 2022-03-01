@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--BottomNavigationView selector for Enable / Disable-->
+
+    <item android:state_checked="true" android:color="#F9B82C"/>
+    <item android:color="#A2B9B1"/>
+</selector>

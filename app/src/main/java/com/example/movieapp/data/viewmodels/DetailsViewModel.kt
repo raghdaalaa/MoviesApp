@@ -1,5 +1,6 @@
 package com.example.movieapp.data.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,30 +29,37 @@ class DetailsViewModel :ViewModel() {
 
     fun getTrailerMovie(id:Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            val trailer = moviesDetailsRepository.getTrailer(id)
-
-            withContext(Main) {
-                trailerId.postValue(trailer)
+            kotlin.runCatching {
+                moviesDetailsRepository.getTrailer(id)
+            }.onFailure {
+                Log.e(TAG, "getTrailerMovie: ",it )
+            }.onSuccess {
+                Log.d(TAG, "getTrailerMovie: "+it.code())
+                withContext(Main) {
+                    trailerId.postValue(it.body()?.resultTrailerResponses?.get(0))
+                }
             }
+
+
         }
     }
     fun getMoviesDetails(id:Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val list = moviesDetailsRepository.getMoviesDetails(id)
-            withContext(Main) {
+//            withContext(Main) {
                 movieDetails.postValue(list)
-            }
+//            }
         }
     }
 
-    fun getMovieCountry(id:Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            val country = moviesDetailsRepository.getMoviesCountry(id)
-
-            withContext(Main) {
-                movieCountry.postValue(country)
-            }
-        }
-    }
+//    fun getMovieCountry(name:String) {
+//        viewModelScope.launch(Dispatchers.IO) {
+//            val country = moviesDetailsRepository.getMoviesCountry(name)
+//
+//            withContext(Main) {
+//                movieCountry.postValue(country)
+//            }
+//        }
+//    }
 
 }

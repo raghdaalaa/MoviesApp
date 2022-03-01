@@ -52,6 +52,10 @@ dependencies {
     //material Components
     implementation 'com.google.android.material:material:<version>'
 
+    //bottom Navigation
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
+   
+
     //  recyclerview
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
     // For control over item selection of both touch and mouse driven selection
@@ -93,12 +97,6 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-beta01'
 
-    //Exoplayer
-    implementation 'com.google.android.exoplayer:exoplayer:2.16.1'
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.16.1'
-    implementation 'com.google.android.exoplayer:exoplayer-dash:2.16.1'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.16.1'
-
 // KenBurns View library -> Android library that
 // provides an extension to ImageView that creates an immersive experience
 // by animating its drawable using the Ken Burns Effect.
@@ -108,4 +106,14 @@ dependencies {
 
     // Circle Image View
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // pagination
+    def paging_version = "3.0.0"
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
+
+    //youtube player
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1'
+//    implementation files('libs/YouTubeAndroidPlayerApi.jar')
+//    implementation fileTree(dir: 'libs' ,include:['*.jar'])
 }

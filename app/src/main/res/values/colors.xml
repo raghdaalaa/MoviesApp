@@ -11,4 +11,13 @@
     <color name="starColor">#F9B82C</color>
     <color name="colorYellow">#375474</color>
     <color name="colorPrimary">#111820</color>
+
+    <!--    //////////////////////////////////////////////-->
+    <color name="yell_col">#E9821C</color>
+    <color name="gree1_col">#276B5A</color>
+    <color name="gree2_col">#358B76</color>
+    <color name="gree3_col">#63B6A4</color>
+    <color name="gray1_col">#A2B9B1</color>
+    <color name="gray2_col">#EEEEEE</color>
+    <color name="dark_col">#1D342E</color>
 </resources>

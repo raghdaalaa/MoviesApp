@@ -1,8 +1,6 @@
 package com.example.movieapp.data.api
 
-import com.example.movieapp.data.api.model.MovieDetails
-import com.example.movieapp.data.api.model.MovieResponseModel
-import com.example.movieapp.data.api.model.ProductionCompany
+import com.example.movieapp.data.api.model.*
 import com.example.movieapp.data.api.videos.MovieTrailerResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -41,4 +39,10 @@ interface MovieInterface {
         @Path("movie_id") movie_id: Int,
         @Query("api_key") api_key: String
     ): Response<MovieTrailerResponse>
+
+   @GET("search/movie?")
+   suspend fun searchMovie(
+       @Query("api_key") api_key: String,
+       @Query("query") query:String
+   ):Response<SearchMoviesResponse>
 }

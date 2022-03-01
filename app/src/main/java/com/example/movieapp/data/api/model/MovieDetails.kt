@@ -12,6 +12,8 @@ import com.google.gson.annotations.SerializedName
     val posterPath: String,
     @SerializedName("release_date")
     val releaseDate: String,
+    @SerializedName("backdrop_path")
+    val backdropPath: String,
     @SerializedName("production_companies")
     val productionCompanies: List<ProductionCompany>,
     val revenue: Long,

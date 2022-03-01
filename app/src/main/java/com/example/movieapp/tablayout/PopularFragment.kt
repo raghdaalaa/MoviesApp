@@ -10,21 +10,29 @@ import android.view.WindowManager
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentPopularBinding
 import com.example.movieapp.data.viewmodels.MovieListViewModel
+import com.example.movieapp.ui.OnNavigate
 import com.example.movieapp.ui.home.adapters.CustomAdapter
+import com.example.movieapp.ui.home.adapters.PaginationScrollListener
 
 
-class PopularFragment : Fragment() {
+class PopularFragment(val onNavigate: OnNavigate) : Fragment(), CustomAdapter.OnItemClick {
 
     private val TAG = "PopularFragment"
     private lateinit var homeViewModel: MovieListViewModel
     private lateinit var binding: FragmentPopularBinding
+
+
+    //pagination
+    private var currentPage=1
     var isLoading = false
-    private lateinit var type: String
+    var isLastPage=false
+
 
 
     override fun onCreateView(
@@ -38,44 +46,62 @@ class PopularFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         homeViewModel = ViewModelProvider(this)[MovieListViewModel::class.java]
-        type = arguments?.get("type").toString()
 
-        //  activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS) // to make status bar transparent
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.popularRv.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        val adapterPopular = CustomAdapter()
+        isLoading=true
+       homeViewModel.getMovieCatogery(page = currentPage)
+       val lm= LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.popularRv.layoutManager=lm
+        val adapterPopular = CustomAdapter(this)
         binding.popularRv.adapter = adapterPopular
+
         homeViewModel.listPopular.observe(viewLifecycleOwner){
-            adapterPopular.setPopular(it,R.id.action_popularFragment_to_detailsFragment5)
+            currentPage=it.page
+            isLoading=false
+            isLastPage=(it.page == it.totalPages)
+
+            if (currentPage ==1){
+                adapterPopular.clear()
+            }
+
+            adapterPopular.appendMoreMovies(it.results)
+
 
         }
 
-// recyclerview pagination
-        binding.popularRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                Log.d(TAG, "OnScrollListener: Called")
-                if (!recyclerView.canScrollVertically(1)) {// 1 for down
-                    if (!isLoading) {
-                        when (type) {
-                            "popular" -> {
-                                homeViewModel.listPopular
-                                Log.d(TAG, "raghda: Called")  // for test
-                            }
-                            "topRated" -> {
-                                homeViewModel.listTopRated
-                            }
-                        }
 
-                    }
-                }
+// popular recyclerview pagination
+        binding.popularRv.addOnScrollListener(object :PaginationScrollListener(lm) {
+            override fun loadMoreMovies() {
+                isLoading=true
+                currentPage +=1
+               homeViewModel.getMovieCatogery(currentPage)
             }
+
+            override fun isLastPage(): Boolean {
+              return isLastPage
+            }
+
+            override fun isLoading(): Boolean {
+             return isLoading
+            }
+
+
         })
+
+
+    }
+
+    override fun onItemClick(id: Int) {
+        val bundle= Bundle()
+        bundle.putInt("id" ,id)
+        onNavigate.onNavigationSelected(R.id.action_homeFragment_to_detailsFragment5,bundle)
+
+//        findNavController().navigate(R.id.action_popularFragment_to_detailsFragment5!!,bundle,null,null)
     }
 
 //    override fun onClick(p0: View?) {

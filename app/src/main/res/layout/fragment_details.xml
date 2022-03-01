@@ -1,97 +1,254 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.details.DetailsFragment">
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <com.flaviofaria.kenburnsview.KenBurnsView
         android:id="@+id/moviesBackGroundImage"
         android:layout_width="match_parent"
-        android:layout_height="256dp"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/background" />
-
-
-    <ImageView
-        android:id="@+id/imdbStarImageView"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginStart="8dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_star"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/moviesBackGroundImage"/>
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/currentPointTextView"-->
-
-    <TextView
-        android:id="@+id/currentPointTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:fontFamily="sans-serif-medium"
-        android:textColor="@color/black"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imdbStarImageView"
-        app:layout_constraintStart_toEndOf="@id/imdbStarImageView"
-        app:layout_constraintTop_toTopOf="@+id/imdbStarImageView"
-        tools:text="7.8" />
-
-    <TextView
-        android:id="@+id/MaximumPointTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:text=" /10"
-        android:textColor="@color/grey"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="@+id/currentPointTextView"
-        app:layout_constraintStart_toEndOf="@id/currentPointTextView"
-        app:layout_constraintTop_toTopOf="@+id/currentPointTextView"
-        tools:ignore="HardcodedText" />
-
-
-    <TextView
-        android:id="@+id/movieCountry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-medium"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/imdbStarImageView"
-        app:layout_constraintTop_toBottomOf="@+id/imdbStarImageView"
-        tools:text="Moonrise Kingdom (2012)" />
-
-    <TextView
-        android:id="@+id/movieOverViewTextView"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:ellipsize="end"
-        android:fontFamily="sans-serif-medium"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/movieCountry"
-        app:layout_constraintTop_toBottomOf="@+id/movieCountry"
-        tools:text="Moonrise Kingdom is a 2012 American coming-of-age comedy-drama film directed by Wes Anderson, written by Anderson and Roman Coppola. It features an ensemble cast including Bruce Willis, Edward Norton, Bill Murray, Frances McDormand, Tilda Swinton, Jason Schwartzman, Bob Balaban, Harvey Keitel, and newcomers Jared Gilman and Kara Hayward. Largely set on the fictional New England island of New Penzance, it tells the story of an orphan boy.
-" />
+        android:layout_height="235dp"
+        android:alpha="0.8" />
 
     <ImageView
         android:id="@+id/playButton"
         android:layout_width="@dimen/_43sdp"
         android:layout_height="@dimen/_30sdp"
-        android:src="@drawable/ic_video_play"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="80dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/ic_video_play" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_180sdp"
+        android:background="@drawable/white_rectangle">
+
+        <RelativeLayout
+            android:id="@+id/deti_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20sp"
+                android:background="@drawable/white_rectangle">
+
+                <TextView
+                    android:id="@+id/title_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="110dp"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Flight club"
+                    android:textColor="@color/dark_col"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/currentPointTextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/d"-->
+                <!--                    android:layout_width="38sp"-->
+                <!--                    android:layout_height="18sp"-->
+                <!--                    android:layout_marginTop="5dp"-->
+                <!--                    android:background="@drawable/textview_border"-->
+                <!--                    android:padding="3sp"-->
+                <!--                    android:text="3D"-->
+                <!--                    android:textAlignment="center"-->
+                <!--                    android:textColor="@color/dark_col"-->
+                <!--                    android:textSize="9dp"-->
+                <!--                    app:layout_constraintStart_toStartOf="@id/title_tv"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/title_tv" />-->
+
+                <!--                <TextView-->
+                <!--                    android:layout_width="40sp"-->
+                <!--                    android:layout_height="18sp"-->
+                <!--                    android:layout_marginStart="12dp"-->
+                <!--                    android:layout_marginTop="5dp"-->
+                <!--                    android:background="@drawable/imax_border"-->
+                <!--                    android:padding="3sp"-->
+                <!--                    android:text="iMAX"-->
+                <!--                    android:textAlignment="center"-->
+                <!--                    android:textColor="@color/yell_col"-->
+                <!--                    android:textSize="9sp"-->
+                <!--                    app:layout_constraintStart_toEndOf="@id/d"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/title_tv" />-->
+
+                <TextView
+                    android:id="@+id/currentPointTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginEnd="11sp"
+                    android:text="10"
+                    android:textColor="@color/yell_col"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/movie_release_Date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="1999-10-12"
+                    android:textColor="@color/gray1_col"
+                    android:textSize="11dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/title_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/title_tv" />
+
+                <TextView
+                    android:id="@+id/status_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/movie_release_Date"
+                    app:layout_constraintTop_toBottomOf="@id/movie_release_Date"/>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/poster_iv"
+                android:layout_width="80sp"
+                android:layout_height="120sp"
+                android:layout_marginStart="25sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/intro_over_con"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/deti_container">
+
+            <TextView
+                android:id="@+id/intro_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Introduction"
+                android:layout_margin="7dp"
+                android:textColor="@color/dark_col"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/movieOverViewTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:textStyle="bold"
+                android:text="Chihiro and mom and dad drove to their new
+home together, in the outskirts of the road
+accidentally into the mysterious tennel -they
+went to another strange..."
+                android:textColor="@color/gray1_col" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+<!--                <Button-->
+<!--                    android:id="@+id/collect_tv"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:text="Collect"-->
+<!--                    android:layout_marginEnd="50dp"-->
+<!--                    android:textStyle="bold" />-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/buy_now"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:text="Buy now"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textStyle="bold" />-->
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/actor_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:text="Actor"
+            android:textColor="@color/dark_col"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/intro_over_con" />
+        <TextView
+            android:id="@+id/seeAllAct_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="see all"
+            android:textColor="@color/dark_col"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/intro_over_con"/>
+
+        <TextView
+            android:id="@+id/see_all_arraw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/intro_over_con"
+            android:background="@drawable/arrow_right_24"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toEndOf="@id/seeAllAct_tv"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/actor_rv"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/actor_tv"
+            app:layout_constraintTop_toBottomOf="@id/actor_tv"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
+</ScrollView>

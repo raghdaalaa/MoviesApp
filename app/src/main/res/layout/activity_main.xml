@@ -7,34 +7,29 @@
     tools:context=".ui.MainActivity">
 
 
+   <com.google.android.material.bottomnavigation.BottomNavigationView
+       android:id="@+id/bottom_nav"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:itemBackground="@color/white"
+       app:itemTextColor="@color/navigation_icon_selected"
+       app:itemIconTint="@color/navigation_icon_selected"
+       app:menu="@menu/navigation_menu"
+       app:layout_constraintBottom_toBottomOf="parent">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+   </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/pager"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tab_layout">
-
-
-    </androidx.viewpager2.widget.ViewPager2>
-
-
-<!--    <androidx.fragment.app.FragmentContainerView-->
-<!--        android:id="@+id/nav_host_fragment"-->
-<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
-<!--        android:layout_width="@dimen/with_0"-->
-<!--        android:layout_height="@dimen/height_0"-->
-<!--        app:defaultNavHost="true"-->
-<!--        app:navGraph="@navigation/nav_graph" />-->
+   <fragment
+       android:id="@+id/nav_host_fragment"
+       android:name="androidx.navigation.fragment.NavHostFragment"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+       app:defaultNavHost="true"
+       app:navGraph="@navigation/nav_graph"
+       />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,52 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/movieContainer"
-    android:layout_marginBottom="15dp"
-    app:contentPadding="8dp"
+    android:background="@color/gray2_col"
     android:layout_width="match_parent"
     android:layout_height="136dp">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/poster_iv"
-            android:layout_width="104dp"
-            android:layout_height="104dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
+        android:layout_height="match_parent"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20sp"
+        android:background="@drawable/white_rectangle">
 
         <TextView
             android:id="@+id/title_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="sans-serif-medium"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintLeft_toRightOf="@id/poster_iv"
-            app:layout_constraintTop_toTopOf="@id/poster_iv"
-            tools:text="Movie Title" />
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="5dp"
+            android:text="Flight club ig ghghghg jkhgb bh hbj"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/dark_col"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/rating_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/rating_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="bold"
-            android:textColor="@color/grey"
-            android:textSize="13sp"
-            android:ellipsize="end"
-            app:layout_constraintStart_toStartOf="@+id/title_tv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="11sp"
+            android:layout_marginTop="5sp"
+            android:text="10"
+            android:textSize="18sp"
+            android:textColor="@color/yell_col"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/movie_release_Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="1999-10-12"
+            android:textColor="@color/gray1_col"
+            android:textSize="11dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/title_tv" />
+
+        <ImageView
+            android:id="@+id/fav_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5sp"
+            android:src="@drawable/ic_baseline_favorite_border_24"
+            android:textColor="@color/yell_col"
             app:layout_constraintTop_toBottomOf="@id/title_tv"
-           android:text="10"/>
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/poster_iv"
+            android:layout_width="80sp"
+            android:layout_height="110sp"
+            android:layout_marginStart="28dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+
+</RelativeLayout>

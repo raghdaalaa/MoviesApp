@@ -3,39 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/popularFragment">
+    app:startDestination="@id/homeFragment">
 
 
-    <fragment
-        android:id="@+id/popularFragment"
-        android:name="com.example.movieapp.tablayout.PopularFragment"
-        android:label="fragment_popular"
-        tools:layout="@layout/fragment_popular" >
-        <action
-            android:id="@+id/action_popularFragment_to_detailsFragment5"
-            app:destination="@id/detailsFragment5" />
-    </fragment>
+
     <fragment
         android:id="@+id/detailsFragment5"
         android:name="com.example.movieapp.ui.details.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" >
         <action
-            android:id="@+id/action_detailsFragment5_to_videoPlayerFragment"
-            app:destination="@id/videoPlayerFragment" />
+            android:id="@+id/action_detailsFragment5_to_playerVideoFragment"
+            app:destination="@id/playerVideoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.movieapp.ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment5"
+            app:destination="@id/detailsFragment5" />
+        <action
+            android:id="@+id/action_homeFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
     </fragment>
     <fragment
-        android:id="@+id/topRatedFragment"
-        android:name="com.example.movieapp.tablayout.TopRatedFragment"
-        android:label="fragment_top_rated"
-        tools:layout="@layout/fragment_top_rated" >
+        android:id="@+id/playerVideoFragment"
+        android:name="com.example.movieapp.ui.playing.PlayerVideoFragment"
+        android:label="fragment_player_video"
+        tools:layout="@layout/fragment_player_video" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.movieapp.tablayout.favorite.ui.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" >
         <action
-            android:id="@+id/action_topRatedFragment_to_detailsFragment5"
+            android:id="@+id/action_favoriteFragment_to_detailsFragment5"
             app:destination="@id/detailsFragment5" />
     </fragment>
-    <fragment
-        android:id="@+id/videoPlayerFragment"
-        android:name="com.example.movieapp.ui.playing.VideoPlayerFragment"
-        android:label="fragment_video_player"
-        tools:layout="@layout/fragment_video_player" />
 </navigation>

@@ -1,124 +1,70 @@
 package com.example.movieapp.data.viewmodels
 
 import android.app.Application
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movieapp.data.api.model.MovieResponseModel
 import com.example.movieapp.data.api.model.Result
 import com.example.movieapp.ui.home.HomeRepository
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
-class MovieListViewModel :ViewModel(){
-private val TAG="MoviesViewModel"
-private val repository =HomeRepository()
-    var listPopular=MutableLiveData<List<Result>>()
-    var listTopRated=MutableLiveData<List<Result>>()
+class MovieListViewModel() :ViewModel() {
+    private val TAG = "MoviesViewModel"
+    private val repository = HomeRepository()
+    var listPopular = MutableLiveData<MovieResponseModel>()
 
-    init {
-         getMovieCatogery()
-    }
+    var listTopRated = MutableLiveData<MovieResponseModel>()
 
-    private fun getMovieCatogery(){
-viewModelScope.launch(IO) {
- val list=repository.getPopular()
-    withContext(Main){
-        listPopular.postValue(list!!)
-    }
-}
+    // function to get movies from retrofit
+    public fun getMovieCatogery(page:Int) {
         viewModelScope.launch(IO) {
-            val list=repository.getTopRated()
-            withContext(Main){
-                listTopRated.postValue(list!!)
+            val response = repository.getPopular(page)
+            withContext(Main) {
+                listPopular.postValue(response.body())
             }
         }
-
+        viewModelScope.launch(IO) {
+            val response = repository.getTopRated(page)
+            withContext(Main) {
+                listTopRated.postValue(response.body())
+            }
+        }
     }
-
 
 }
 
-
-
-
-//    private var networkingHelper = MovieClient.getInstance()
+//--------------------------------Callbacks-------------------------------------------------
+// function to get movies from retrofit
+//public fun getMovies(){
 //
-//   private  val _loadMovies = MutableLiveData<Result?>()
-//    val loadMovies: LiveData<Result?> = _loadMovies
-//
-//    private val _isLoading = MutableLiveData<Boolean?>()
-//    val isLoading: LiveData<Boolean?> = _isLoading
-//
-//    private val _errorMessage = MutableLiveData<String?>()
-//    val errorMessage: LiveData<String?> = _errorMessage
-//
-//    private val disposables = CompositeDisposable()
-//    private var page: Int = 1
-//
-//    fun getMovieList(categoryId: String) {
-//        when (categoryId) {
-//            "Popular" -> {
-//                getPopular()
-//            }
-//            "Top Rated" -> {
-//             //   getTopRated()
+//    val list=repository.getPopular()
+//    list.enqueue(object : Callback<List<PopularResult>> {
+//        override fun onResponse(
+//            call: Call<List<PopularResult>>,
+//            response: Response<List<PopularResult>>
+//        ) {
+//            if (response.isSuccessful) // check success of response
+//                listPopular.postValue(response.body())
+//            else if (response.code() in 400..499){
+//                Log.d(TAG, "onResponse: "+response.errorBody()?.string())
+////                    val errorJSon=JSONObject() // equal GsonConvertFactory
 //            }
 //        }
-//    }
 //
-////    private fun getTopRated() {
-////        _isLoading.postValue(true)
-////
-////        val disposable = networkingHelper.getMovieApi()
-////            .getTopRatedMovies(apiKey,page)
-////            .subscribeOn(Schedulers.io())
-////            .observeOn(AndroidSchedulers.mainThread())
-////            .subscribeWith(object : DisposableSingleObserver<Result>() {
-////                override fun onSuccess(t: Result?) {
-////                    _isLoading.postValue(false)
-////                    t?.let {
-////                        _loadMovies.postValue(it)
-////                        page += 1
-////                    }
-////                }
-////
-////                override fun onError(e: Throwable?) {
-////                    _isLoading.postValue(false)
-////                    _errorMessage.postValue(e?.message)
-////                }
-////
-////            })
-////        disposables.add(disposable)
-////    }
+//        override fun onFailure(call: Call<List<PopularResult>>, t: Throwable) {
 //
+//        }
 //
-//     fun getPopular() {
+//    })
 //
-//         val call: Call<Result> = networkingHelper.getMovieApi()
-//             .getPopularMovies(apiKey,page)
-//call.enqueue(object :Callback<Result>{
-//    override fun onResponse(call: Call<Result>?, response: Response<Result>?) {
-//if (response?.isSuccessful!!){
-//    _loadMovies.postValue(response.body())
-//    }
 //}
-//
-//    override fun onFailure(call: Call<Result>, t: Throwable) {
-//        call.cancel()
-//         _errorMessage.postValue(t?.message)
-//    }
-//
-//})
-//
-//    }
-//
-////    override fun onCleared() {
-////        disposables.dispose()
-////        disposables.clear()
-////        super.onCleared()
-////    }
 
