@@ -4,7 +4,7 @@ package com.example.movieapp.data.api.model
 import com.google.gson.annotations.SerializedName
 
 data class MovieResponseModel(
-    val page: Int,
+    val page: Int=0,
     val results: ArrayList<Result>,
     @SerializedName("total_pages")
     val totalPages: Int,

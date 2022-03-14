@@ -57,15 +57,6 @@
             app:layout_constraintStart_toStartOf="@id/title_tv"
             app:layout_constraintTop_toBottomOf="@+id/title_tv" />
 
-        <ImageView
-            android:id="@+id/fav_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5sp"
-            android:src="@drawable/ic_baseline_favorite_border_24"
-            android:textColor="@color/yell_col"
-            app:layout_constraintTop_toBottomOf="@id/title_tv"
-            app:layout_constraintEnd_toEndOf="parent" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/poster_iv"
@@ -76,7 +67,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

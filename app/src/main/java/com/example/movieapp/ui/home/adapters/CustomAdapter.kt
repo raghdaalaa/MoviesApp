@@ -1,4 +1,5 @@
 package com.example.movieapp.ui.home.adapters
+
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,7 +21,7 @@ import com.example.movieapp.R
 import com.example.movieapp.databinding.RvItemDesignBinding
 
 
-class CustomAdapter(val listener :OnItemClick): RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(val listener: OnItemClick) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     private val TAG = "CustomAdapter"
     private var mList: ArrayList<Result>? = ArrayList()
@@ -30,51 +31,53 @@ class CustomAdapter(val listener :OnItemClick): RecyclerView.Adapter<CustomAdapt
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the view_design that is used to hold list item
 
-        val view=LayoutInflater.from(parent.context).inflate(R.layout.rv_item_design ,parent,false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.rv_item_design, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val movie=mList?.get(position)
-        holder.title.text=movie?.title
-        holder.rating.text=movie?.voteAverage.toString()
-        holder.release_data.text=movie?.releaseDate
+        Log.d(TAG, "onBindViewHolder: ")
+//        val movie=mList?.get(position)
 
-            holder.poster?.load(BASE_IMAGE_URL + movie?.posterPath) {
-crossfade(true)
-                crossfade(500)
-                transformations(RoundedCornersTransformation(20f))
+        holder.apply {
+            mList?.get(position)?.let { movie ->
+
+                title.text = movie.title
+                rating.text = movie.voteAverage.toString()
+                release_data.text = movie.releaseDate
+                poster.load(BASE_IMAGE_URL + movie.posterPath) {
+                    crossfade(true)
+                    crossfade(500)
+                    transformations(RoundedCornersTransformation(20f))
+                }
             }
 
 
-
-        holder.movieContainer?.setOnClickListener {
-            movie?.id?.let { it1 -> listener.onItemClick(it1) }
-
         }
+
 
         //favorite
-        holder.favoriteIcon.setOnClickListener {
-            //shared preference -----> room is better
-            //action to favorite + bundle(id)
-        }
+//        holder.favoriteIcon.setOnClickListener {
+//            //shared preference -----> room is better
+//            //action to favorite + bundle(id)
+//        }
     }
 
     override fun getItemCount(): Int {
-        if (mList !=null)
+        if (mList != null)
             return mList!!.size
         return 0
     }
 
-    fun appendMoreMovies(mList:ArrayList<Result>){
+    fun appendMoreMovies(mList: ArrayList<Result>) {
         this.mList?.addAll(mList)
         notifyDataSetChanged()
     }
 
 
-
-    fun clear(){
+    fun clear() {
         mList?.clear()
     }
 //    fun setTopRated(mList:List<Result>,action: Int){
@@ -83,18 +86,26 @@ crossfade(true)
 //        notifyDataSetChanged()
 //    }
 
-    class ViewHolder(ItemView:View) :RecyclerView.ViewHolder(ItemView) {
-        private val binding=RvItemDesignBinding.bind(itemView)
-        val movieContainer=binding.movieContainer
-        val poster=binding.posterIv
-        val title=binding.titleTv
-        val rating=binding.ratingTv
-        val release_data=binding.movieReleaseDate
-        val favoriteIcon=binding.favIv
+    inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+        private val binding = RvItemDesignBinding.bind(itemView)
+        val movieContainer = binding.movieContainer
+        val poster = binding.posterIv
+        val title = binding.titleTv
+        val rating = binding.ratingTv
+        val release_data = binding.movieReleaseDate
+       // val favoriteIcon = binding.favIv
 
+        init {
+
+            movieContainer?.setOnClickListener {
+                if (bindingAdapterPosition!=-1)
+                mList?.get(bindingAdapterPosition)?.id?.let { it1 -> listener.onItemClick(it1) }
+            }
+        }
     }
-    interface OnItemClick{
-        fun onItemClick(id:Int)
+
+    interface OnItemClick {
+        fun onItemClick(id: Int)
 
     }
 }

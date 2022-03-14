@@ -10,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MovieClient{
+    //singleton design pattern  --> used when we want to make one instance from the class
     companion object{
         private var INSTANCE:Retrofit?=null
         private const val BASE_URL="https://api.themoviedb.org/3/"

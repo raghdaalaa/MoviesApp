@@ -6,43 +6,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.HomeFragment">
 
-    <TextView
-        android:id="@+id/mov_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="@dimen/_15sdp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_20sdp"
-        android:textAllCaps="true"
-        android:text="Movies"/>
+    <include
+        android:id="@+id/toolbar_design_id"
+        layout="@layout/toolbar_design"/>
 
-    <ImageView
-        android:id="@+id/search_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_baseline_search_24"
-        android:layout_margin="@dimen/_15sdp"
-        />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="0dp"
+        android:background="@color/gray2_col"
         android:layout_height="@dimen/_48sdp"
         app:tabTextColor="@color/black"
         app:tabSelectedTextColor="@color/dark_col"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mov_title" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar_design_id" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/gray2_col"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

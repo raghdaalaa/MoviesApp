@@ -38,7 +38,7 @@ class SplashScreen : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        handler.postDelayed(runnable,6000)
+        handler.postDelayed(runnable,2000)
     }
 
     override fun onStop() {

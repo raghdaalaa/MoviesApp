@@ -24,7 +24,7 @@ class DetailsViewModel :ViewModel() {
 
     var trailerId = MutableLiveData<ResultTrailerResponse?>()
     var movieDetails = MutableLiveData<MovieDetails?>()
-    var movieCountry = MutableLiveData<ProductionCompany?>()
+   var favorite=MutableLiveData<Boolean>()
 
 
     fun getTrailerMovie(id:Int) {
@@ -52,14 +52,19 @@ class DetailsViewModel :ViewModel() {
         }
     }
 
-//    fun getMovieCountry(name:String) {
-//        viewModelScope.launch(Dispatchers.IO) {
-//            val country = moviesDetailsRepository.getMoviesCountry(name)
+//fun getFavorite(id: Int) :Boolean{
+//   viewModelScope.launch {
+//       val exist=moviesDetailsRepository.getFav(id) //result of getFav ->boolean
+//favorite.postValue(exist)
+//   }
 //
-//            withContext(Main) {
-//                movieCountry.postValue(country)
-//            }
+//}
+//    fun setFavorite(id: Int,poster:String,title:String,exist:Boolean){
+//        viewModelScope.launch {
+//            moviesDetailsRepository.setFav(id,poster,title,exist)
+//
 //        }
+//
 //    }
 
 }

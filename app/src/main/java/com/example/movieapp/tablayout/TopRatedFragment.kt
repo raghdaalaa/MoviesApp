@@ -71,7 +71,7 @@ class TopRatedFragment(val onNavigate: OnNavigate) : Fragment(), CustomAdapter.O
             override fun loadMoreMovies() {
                isLoading=true
                 currentPage +=1
-                homeViewModel.getMovieCatogery(currentPage)
+                homeViewModel.getMovies(currentPage)
             }
 
             override fun isLastPage(): Boolean {

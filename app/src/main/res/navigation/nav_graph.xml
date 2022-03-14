@@ -5,8 +5,6 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
-
-
     <fragment
         android:id="@+id/detailsFragment5"
         android:name="com.example.movieapp.ui.details.DetailsFragment"
@@ -15,6 +13,9 @@
         <action
             android:id="@+id/action_detailsFragment5_to_playerVideoFragment"
             app:destination="@id/playerVideoFragment" />
+        <action
+            android:id="@+id/action_detailsFragment5_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
     </fragment>
 
     <fragment
@@ -26,8 +27,8 @@
             android:id="@+id/action_homeFragment_to_detailsFragment5"
             app:destination="@id/detailsFragment5" />
         <action
-            android:id="@+id/action_homeFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment" />
+            android:id="@+id/action_homeFragment_to_searchMovieFragment"
+            app:destination="@id/searchMovieFragment" />
     </fragment>
     <fragment
         android:id="@+id/playerVideoFragment"
@@ -36,11 +37,16 @@
         tools:layout="@layout/fragment_player_video" />
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.movieapp.tablayout.favorite.ui.FavoriteFragment"
+        android:name="com.example.movieapp.ui.favorite.ui.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" >
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/searchMovieFragment"
+        android:name="com.example.movieapp.ui.search.ui.SearchMovieFragment"
+        android:label="fragment_search_movie"
+        tools:layout="@layout/fragment_search_movie" >
         <action
-            android:id="@+id/action_favoriteFragment_to_detailsFragment5"
+            android:id="@+id/action_searchMovieFragment_to_detailsFragment5"
             app:destination="@id/detailsFragment5" />
     </fragment>
 </navigation>

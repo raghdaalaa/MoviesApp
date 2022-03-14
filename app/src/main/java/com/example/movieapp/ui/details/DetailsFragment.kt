@@ -20,14 +20,20 @@ import com.example.movieapp.data.base.BASE_IMAGE_URL
 import com.example.movieapp.data.viewmodels.DetailsViewModel
 import com.example.movieapp.databinding.FragmentDetailsBinding
 import com.example.movieapp.ui.OnNavigate
+import com.example.movieapp.ui.favorite.ui.FavoriteViewModel
 import com.flaviofaria.kenburnsview.RandomTransitionGenerator
 
 private const val TAG = "DetailsFragment"
+
 class DetailsFragment : Fragment() {
     private lateinit var moviesDetailsViewModel: DetailsViewModel
+    private lateinit var favoriteViewModel: FavoriteViewModel
+
+
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
     private lateinit var trailerKey: String
+    private val favorite = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +54,6 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val posterPath = arguments?.get("posterPath").toString()
         val id = arguments?.getInt("id")!!
 
         moviesDetailsViewModel.getMoviesDetails(id)
@@ -71,9 +76,45 @@ class DetailsFragment : Fragment() {
             }
         }
 
+        //Favorite
+
+        binding.favIv.setOnClickListener {
+            if (favorite){
+                binding.favIv.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                context?.applicationContext?.let {
+                        it1 -> favoriteViewModel.insertMovie(it1) }
+            }else{
+                binding.favIv.setImageResource(R.drawable.ic_baseline_favorite_24)
+                context?.let { it1 -> favoriteViewModel.deleteMovie(it1?.applicationContext,id) }
+            }
+        }
+
+//        binding.favIv.setOnClickListener {
+//            moviesDetailsViewModel.setFavorite(id, poster, title, favorite)
+//            if (favorite) {
+//                binding.favIv.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+//            } else {
+//                binding.favIv.setImageResource(R.drawable.ic_baseline_favorite_24)
+//            }
+//            val bundle = Bundle()
+//            bundle.putInt("MovieId", id)
+//            it.findNavController()
+//                .navigate(R.id.action_detailsFragment5_to_favoriteFragment, bundle)
+//        }
+
+
+        moviesDetailsViewModel.favorite.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.favIv.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+
+            } else {
+                binding.favIv.setImageResource(R.drawable.ic_baseline_favorite_24)
+            }
+        }
+
 
         moviesDetailsViewModel.trailerId.observe(viewLifecycleOwner, {
-            Log.d(TAG, "onViewCreated: "+it.toString())
+            Log.d(TAG, "onViewCreated: " + it.toString())
             trailerKey = it?.key ?: ""
         })
 
@@ -82,7 +123,7 @@ class DetailsFragment : Fragment() {
             binding.currentPointTextView.text = it?.voteAverage.toString()
             binding.titleTv.text = it?.title
             binding.movieReleaseDate.text = it?.releaseDate
-            binding.statusTv.text=it?.status
+            binding.statusTv.text = it?.status
 
             val backGroundImage = binding.moviesBackGroundImage
             val interpolator = LinearInterpolator()
