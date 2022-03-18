@@ -1,29 +1,23 @@
 package com.example.movieapp.data.viewmodels
 
-import android.app.Application
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movieapp.data.api.model.MovieDetails
 import com.example.movieapp.data.api.model.MovieResponseModel
-import com.example.movieapp.data.api.model.Result
 import com.example.movieapp.ui.home.HomeRepository
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MovieListViewModel() : ViewModel() {
     private val TAG = "MoviesViewModel"
     private val repository = HomeRepository()
     var listPopular = MutableLiveData<MovieResponseModel>()
     var listTopRated = MutableLiveData<MovieResponseModel>()
-    var listOfMovies = MutableLiveData<ArrayList<Result>>()
+    var listOfMovies = MutableLiveData<ArrayList<MovieDetails>>()
 
 //    // function to get movies from retrofit
 //    public fun getMovieCatogery(page:Int) {
@@ -46,7 +40,7 @@ class MovieListViewModel() : ViewModel() {
 //}
 
 
-    fun getMovies(page: Int) {
+    fun getPopularMovies(page: Int) {
         viewModelScope.launch(IO) {
 
             kotlin.runCatching {
@@ -74,6 +68,41 @@ class MovieListViewModel() : ViewModel() {
             }.onFailure {
                 Log.d(TAG, "getMovies: ${it.message}")
                 listPopular.postValue(null)
+            }
+
+        }
+
+    }
+
+    //topRated
+    fun getTopRatedMovies(page: Int) {
+        viewModelScope.launch(IO) {
+
+            kotlin.runCatching {
+                repository.getTopRated(page)
+            }.onSuccess {
+                Log.d(TAG, "getTopRatedMovies: ${it.code()}")
+                if (it.isSuccessful) {
+                    listTopRated.postValue(it.body())
+                    it.body()?.let {
+                        if (it.page == 1) {   //update or refresh
+                            withContext(Main) {
+                                listOfMovies.value = ArrayList()    //clear listOfMovies
+                            }
+                        }
+                        listOfMovies.value?.addAll(it.results)  // add value of listPopular(LiveData) -->getValue
+                        // in listOfMovies(liveData that has all data)
+                        //it.results -> value of listPopular
+                        listOfMovies.postValue(listOfMovies.value)      // setValue
+                        //postValue/setValue --> دي الميثود اللي بتسمع التغيير اللي حصل في الليست
+                        //بتشتغل في الباج جراوند فمش محتاجين نعمل سوتش لل post--> ui
+                        //set --> ui مش بتشتغل في الباج جراوند فمحتاجين نعمل سوتش لل
+                    }
+                } else
+                    Log.d(TAG, "getMovies: " + it.code())
+            }.onFailure {
+                Log.d(TAG, "getMovies: ${it.message}")
+                listTopRated.postValue(null)
             }
 
         }

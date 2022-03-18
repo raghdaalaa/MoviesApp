@@ -13,18 +13,18 @@ import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movieapp.data.api.model.Result
 import com.example.movieapp.data.base.BASE_IMAGE_URL
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.example.movieapp.R
+import com.example.movieapp.data.api.model.MovieDetails
 import com.example.movieapp.databinding.RvItemDesignBinding
 
 
 class CustomAdapter(val listener: OnItemClick) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     private val TAG = "CustomAdapter"
-    private var mList: ArrayList<Result>? = ArrayList()
+    private var mList: ArrayList<MovieDetails>? = ArrayList()
     var context: Context? = null
 
 
@@ -57,12 +57,6 @@ class CustomAdapter(val listener: OnItemClick) : RecyclerView.Adapter<CustomAdap
 
         }
 
-
-        //favorite
-//        holder.favoriteIcon.setOnClickListener {
-//            //shared preference -----> room is better
-//            //action to favorite + bundle(id)
-//        }
     }
 
     override fun getItemCount(): Int {
@@ -71,7 +65,7 @@ class CustomAdapter(val listener: OnItemClick) : RecyclerView.Adapter<CustomAdap
         return 0
     }
 
-    fun appendMoreMovies(mList: ArrayList<Result>) {
+    fun appendMoreMovies(mList: ArrayList<MovieDetails>) {
         this.mList?.addAll(mList)
         notifyDataSetChanged()
     }
@@ -80,7 +74,7 @@ class CustomAdapter(val listener: OnItemClick) : RecyclerView.Adapter<CustomAdap
     fun clear() {
         mList?.clear()
     }
-//    fun setTopRated(mList:List<Result>,action: Int){
+//    fun setTopRated(mList:List<MovieDetails>,action: Int){
 //        this.mList=mList
 //        this.action=action
 //        notifyDataSetChanged()
@@ -93,7 +87,7 @@ class CustomAdapter(val listener: OnItemClick) : RecyclerView.Adapter<CustomAdap
         val title = binding.titleTv
         val rating = binding.ratingTv
         val release_data = binding.movieReleaseDate
-       // val favoriteIcon = binding.favIv
+
 
         init {
 
@@ -106,6 +100,7 @@ class CustomAdapter(val listener: OnItemClick) : RecyclerView.Adapter<CustomAdap
 
     interface OnItemClick {
         fun onItemClick(id: Int)
+        fun onItemLongClick(id: Int)
 
     }
 }

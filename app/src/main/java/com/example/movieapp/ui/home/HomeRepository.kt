@@ -3,7 +3,7 @@ package com.example.movieapp.ui.home
 import com.example.movieapp.data.api.MovieClient
 import com.example.movieapp.data.api.MovieInterface
 import com.example.movieapp.data.api.model.MovieResponseModel
-import com.example.movieapp.data.api.model.Result
+
 import com.example.movieapp.data.api.videos.MovieTrailerResponse
 import retrofit2.Response
 

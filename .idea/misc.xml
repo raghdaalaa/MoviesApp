@@ -23,8 +23,8 @@
         <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/font/fonts.xml" value="0.234375" />
         <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.20416666666666666" />
-        <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/layout/favorite_item.xml" value="0.1" />
-        <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/layout/fragment_details.xml" value="0.6804733727810651" />
+        <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/layout/favorite_item.xml" value="0.5" />
+        <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/layout/fragment_details.xml" value="0.6299694189602446" />
         <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/layout/fragment_favorite.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/layout/fragment_player_video.xml" value="0.20416666666666666" />
@@ -36,7 +36,7 @@
         <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/layout/search_item.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/layout/test.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/layout/toolbar_design.xml" value="0.5" />
-        <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/menu/navigation_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/menu/navigation_menu.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/menu/search_icon.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/menu/search_menu.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/KotlinProjects/MovieApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.142" />

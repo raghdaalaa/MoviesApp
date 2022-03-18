@@ -1,13 +1,12 @@
 package com.example.movieapp.ui.details
 
-import android.os.Build
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.view.animation.LinearInterpolator
 import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
@@ -33,7 +32,8 @@ class DetailsFragment : Fragment() {
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
     private lateinit var trailerKey: String
-    private val favorite = false
+    private var favorite = true
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,19 +46,26 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         moviesDetailsViewModel = ViewModelProvider(this)[DetailsViewModel::class.java]
+        favoriteViewModel = ViewModelProvider(this)[FavoriteViewModel::class.java]
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         val id = arguments?.getInt("id")!!
 
         moviesDetailsViewModel.getMoviesDetails(id)
-//        moviesDetailsViewModel.getMovieCountry(id)
         moviesDetailsViewModel.getTrailerMovie(id)
+
+//        context?.let { favoriteViewModel.insertMovie(it) }
+//        context?.let { favoriteViewModel.deleteMovie(it, id) }
+
+        favoriteViewModel.isFav(id)
 
 
 
@@ -78,16 +85,18 @@ class DetailsFragment : Fragment() {
 
         //Favorite
 
-        binding.favIv.setOnClickListener {
-            if (favorite){
-                binding.favIv.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-                context?.applicationContext?.let {
-                        it1 -> favoriteViewModel.insertMovie(it1) }
-            }else{
+        favoriteViewModel.fav.observe(viewLifecycleOwner) {
+            favorite=it
+            if (it) {
                 binding.favIv.setImageResource(R.drawable.ic_baseline_favorite_24)
-                context?.let { it1 -> favoriteViewModel.deleteMovie(it1?.applicationContext,id) }
+            } else {
+                binding.favIv.setImageResource(R.drawable.ic_baseline_favorite_border_24)
             }
         }
+
+
+
+
 
 //        binding.favIv.setOnClickListener {
 //            moviesDetailsViewModel.setFavorite(id, poster, title, favorite)
@@ -103,19 +112,9 @@ class DetailsFragment : Fragment() {
 //        }
 
 
-        moviesDetailsViewModel.favorite.observe(viewLifecycleOwner) {
-            if (it) {
-                binding.favIv.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-
-            } else {
-                binding.favIv.setImageResource(R.drawable.ic_baseline_favorite_24)
-            }
-        }
-
-
         moviesDetailsViewModel.trailerId.observe(viewLifecycleOwner, {
             Log.d(TAG, "onViewCreated: " + it.toString())
-            trailerKey = it?.key ?: ""
+            trailerKey = it?.key ?: ""    //Elvis -->if key ==null return empty string if not return key
         })
 
         moviesDetailsViewModel.movieDetails.observe(viewLifecycleOwner, {
@@ -124,6 +123,17 @@ class DetailsFragment : Fragment() {
             binding.titleTv.text = it?.title
             binding.movieReleaseDate.text = it?.releaseDate
             binding.statusTv.text = it?.status
+
+            binding.favIv.setOnClickListener {v->
+                if (!favorite){
+                    binding.favIv.setImageResource(R.drawable.ic_baseline_favorite_24)
+                    context?.let { it1 -> it?.let { it2 -> favoriteViewModel.insertMovie(it1, it2) } }
+                }else{
+                    binding.favIv.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                    context?.let { it1 -> favoriteViewModel.deleteMovie(it1,id) }
+                }
+                favorite=!favorite
+            }
 
             val backGroundImage = binding.moviesBackGroundImage
             val interpolator = LinearInterpolator()

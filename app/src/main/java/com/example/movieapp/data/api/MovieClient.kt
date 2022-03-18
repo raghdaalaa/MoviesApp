@@ -1,6 +1,7 @@
 package com.example.movieapp.data.api
 
 
+import android.util.Log
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MovieClient{
     //singleton design pattern  --> used when we want to make one instance from the class
     companion object{
+
         private var INSTANCE:Retrofit?=null
         private const val BASE_URL="https://api.themoviedb.org/3/"
 

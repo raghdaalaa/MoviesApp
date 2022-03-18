@@ -52,19 +52,4 @@ class DetailsViewModel :ViewModel() {
         }
     }
 
-//fun getFavorite(id: Int) :Boolean{
-//   viewModelScope.launch {
-//       val exist=moviesDetailsRepository.getFav(id) //result of getFav ->boolean
-//favorite.postValue(exist)
-//   }
-//
-//}
-//    fun setFavorite(id: Int,poster:String,title:String,exist:Boolean){
-//        viewModelScope.launch {
-//            moviesDetailsRepository.setFav(id,poster,title,exist)
-//
-//        }
-//
-//    }
-
 }

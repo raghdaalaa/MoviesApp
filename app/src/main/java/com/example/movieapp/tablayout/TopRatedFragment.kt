@@ -49,37 +49,45 @@ class TopRatedFragment(val onNavigate: OnNavigate) : Fragment(), CustomAdapter.O
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       val lm= LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
-        binding.topRatedRv.layoutManager=lm
-        val adapterTopRated= CustomAdapter(this)
-        binding.topRatedRv.adapter=adapterTopRated
+        isLoading = true
+        if (homeViewModel?.listTopRated?.value == null/*means no data loaded(in first)*/|| homeViewModel?.listTopRated?.value?.page ?: 0 < 2)
+            homeViewModel?.getTopRatedMovies(page = currentPage)
+        val lm = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.topRatedRv.layoutManager = lm
+        val adapterTopRated = CustomAdapter(this)
+        binding.topRatedRv.adapter = adapterTopRated
 
-        homeViewModel.listTopRated.observe(viewLifecycleOwner){
-
-            currentPage=it.page
-            isLoading=false
-            isLastPage=(it.page == it.totalPages)
-            if (currentPage ==1){
-                adapterTopRated.clear()
+        homeViewModel?.listTopRated?.observe(viewLifecycleOwner) {
+            if (it!=null) {
+                currentPage = it.page
+                isLoading = false
+                isLastPage = (it.page == it.totalPages)
             }
-            adapterTopRated.appendMoreMovies(it.results)
+        }
+
+        homeViewModel?.listOfMovies?.observe(viewLifecycleOwner) {
+            //if there is data in (listOfMovies) it will appended in adapter
+            //adapter always has data that has been loaded
+            adapterTopRated.clear()  // لان دايما اللي راجعلي الليست كلها
+            if (it != null)
+                adapterTopRated.appendMoreMovies(it)
         }
 
 
-        //topRated rv
-        binding.topRatedRv.addOnScrollListener(object :PaginationScrollListener(lm){
+// popular recyclerview pagination
+        binding.topRatedRv.addOnScrollListener(object : PaginationScrollListener(lm) {
             override fun loadMoreMovies() {
-               isLoading=true
-                currentPage +=1
-                homeViewModel.getMovies(currentPage)
+                isLoading = true
+                currentPage += 1
+                homeViewModel?.getTopRatedMovies(currentPage)
             }
 
             override fun isLastPage(): Boolean {
-              return isLastPage
+                return isLastPage
             }
 
             override fun isLoading(): Boolean {
-               return isLoading
+                return isLoading
             }
 
 
@@ -93,12 +101,10 @@ class TopRatedFragment(val onNavigate: OnNavigate) : Fragment(), CustomAdapter.O
 //findNavController().navigate(R.id.action_topRatedFragment_to_detailsFragment5!!,bundle,null,null)
     }
 
-//    override fun onClick(p0: View?) {
-//        when(p0?.id){
-//            R.id.movieContainer -> bundleOf("position" to "TopRated")
-//        }
-//        p0?.findNavController()?.navigate(R.id.action_topRatedFragment_to_detailsFragment5)
-//    }
+    override fun onItemLongClick(id: Int) {
+        TODO("Not yet implemented")
+    }
+
     }
 
 

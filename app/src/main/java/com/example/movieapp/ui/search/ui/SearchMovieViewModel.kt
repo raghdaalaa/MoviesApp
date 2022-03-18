@@ -6,9 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movieapp.data.api.model.MovieResponseModel
-import com.example.movieapp.data.api.model.Result
 import com.example.movieapp.data.api.model.SearchMoviesResponse
-import com.example.movieapp.data.api.model.SearchResultsItem
 import com.example.movieapp.ui.search.repository.SearchMoviesRepository
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers.IO

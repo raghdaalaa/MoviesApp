@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.example.movieapp.R
-import com.example.movieapp.data.api.model.Result
+import com.example.movieapp.data.api.model.MovieDetails
 import com.example.movieapp.data.base.BASE_IMAGE_URL
 import com.example.movieapp.databinding.FavoriteItemBinding
 import com.example.movieapp.ui.OnNavigate
@@ -15,7 +15,7 @@ import com.example.movieapp.ui.home.adapters.CustomAdapter
 
 class FavoriteAdapter(): RecyclerView.Adapter<FavoriteAdapter.FavoriteViewholder>(){
 
-    private var favList:List<Result>?=null
+    private var favList:ArrayList<MovieDetails>?=ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewholder {
        val view=LayoutInflater.from(parent.context).inflate(R.layout.favorite_item,parent,false)
@@ -38,7 +38,10 @@ class FavoriteAdapter(): RecyclerView.Adapter<FavoriteAdapter.FavoriteViewholder
        return 0
     }
 
-
+    fun appendMoreMovies(mList: ArrayList<MovieDetails>) {
+        this.favList?.addAll(mList)
+        notifyDataSetChanged()
+    }
 
 
     class FavoriteViewholder(itemView:View): RecyclerView.ViewHolder(itemView) {

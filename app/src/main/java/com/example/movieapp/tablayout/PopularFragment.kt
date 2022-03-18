@@ -49,7 +49,7 @@ class PopularFragment(val onNavigate: OnNavigate) : Fragment(), CustomAdapter.On
 
         isLoading = true
         if (homeViewModel?.listPopular?.value == null/*means no data loaded(in first)*/|| homeViewModel?.listPopular?.value?.page ?: 0 < 2)
-            homeViewModel?.getMovies(page = currentPage)
+            homeViewModel?.getPopularMovies(page = currentPage)
         val lm = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.popularRv.layoutManager = lm
         val adapterPopular = CustomAdapter(this)
@@ -77,7 +77,7 @@ class PopularFragment(val onNavigate: OnNavigate) : Fragment(), CustomAdapter.On
             override fun loadMoreMovies() {
                 isLoading = true
                 currentPage += 1
-                homeViewModel?.getMovies(currentPage)
+                homeViewModel?.getPopularMovies(currentPage)
             }
 
             override fun isLastPage(): Boolean {
@@ -100,5 +100,9 @@ class PopularFragment(val onNavigate: OnNavigate) : Fragment(), CustomAdapter.On
         onNavigate.onNavigationSelected(R.id.action_homeFragment_to_detailsFragment5, bundle)
 
 //        findNavController().navigate(R.id.action_popularFragment_to_detailsFragment5!!,bundle,null,null)
+    }
+
+    override fun onItemLongClick(id: Int) {
+        TODO("Not yet implemented")
     }
 }

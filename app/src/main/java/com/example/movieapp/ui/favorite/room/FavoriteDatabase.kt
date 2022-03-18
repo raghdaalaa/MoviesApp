@@ -4,14 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.movieapp.data.api.model.MovieDetails
 
-@Database(entities = [FavoriteModel::class], version = 1)
+@Database(entities = [MovieDetails::class], version = 2)
 abstract class FavoriteDatabase :RoomDatabase() {
 
     abstract fun movieDao(): FavoriteDao
-@Volatile
-    private var INSTANCE: FavoriteDatabase?=null
 
+companion object{
+    @Volatile
+    private var INSTANCE: FavoriteDatabase?=null
     fun getInstance(context: Context): FavoriteDatabase {
         kotlin.synchronized(this){
             if (INSTANCE == null){
@@ -23,4 +25,5 @@ abstract class FavoriteDatabase :RoomDatabase() {
         }
         return INSTANCE!!
     }
+}
 }
