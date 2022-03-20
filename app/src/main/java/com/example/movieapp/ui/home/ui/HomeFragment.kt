@@ -8,7 +8,6 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.example.movieapp.BaseFragment
 import com.example.movieapp.R
 import com.example.movieapp.data.viewmodels.MovieListViewModel
 import com.example.movieapp.databinding.FragmentHomeBinding

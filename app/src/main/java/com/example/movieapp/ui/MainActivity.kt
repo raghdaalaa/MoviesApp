@@ -18,7 +18,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.movieapp.R
 import com.example.movieapp.data.viewmodels.MovieListViewModel
 import com.example.movieapp.tablayout.ViewPagerAdapter
-import com.example.movieapp.toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator

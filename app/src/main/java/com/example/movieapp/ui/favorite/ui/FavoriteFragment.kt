@@ -54,10 +54,11 @@ private lateinit var binding: FragmentFavoriteBinding
 
     override fun onItemClick(id: Int) {
 
+
     }
 
     override fun onItemLongClick(id: Int) {
-      //  favoriteViewModel.deleteMovie(context,id)
+        context?.let { favoriteViewModel.deleteMovie(it,id) }
     }
 
 
