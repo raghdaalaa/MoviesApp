@@ -1,9 +1,9 @@
 # MoviesApp
 A “Movies App” application lets users Discover New Movies, manage their favorite shows, and discover popular and top-rated Movie
 # Screens
-<img src="https://user-images.githubusercontent.com/62480395/159256052-715e951b-6251-4546-8017-4d337682dc7d.jpg" width=200  height=370> <img src="https://user-images.githubusercontent.com/62480395/159374564-6132525d-ed5f-4eb1-b604-323a6c5b1e5c.jpg" width=200  height=370> <img src="https://user-images.githubusercontent.com/62480395/159374809-4f18adcf-b974-4a03-b495-53d976467616.jpg" width=200  height=370> 
+<img src="https://user-images.githubusercontent.com/62480395/159256052-715e951b-6251-4546-8017-4d337682dc7d.jpg" width=200  height=370> <img src="https://user-images.githubusercontent.com/62480395/159374564-6132525d-ed5f-4eb1-b604-323a6c5b1e5c.jpg" width=200  height=370> <img src="https://user-images.githubusercontent.com/62480395/159377689-7822f9b7-1cf1-423a-9859-d65af0d7eb97.jpg" width=200  height=370> <img src="https://user-images.githubusercontent.com/62480395/159374809-4f18adcf-b974-4a03-b495-53d976467616.jpg" width=200  height=370> 
 
-<img src="https://user-images.githubusercontent.com/62480395/159375348-5619d0d9-1b29-4b77-b248-a3a3a5228899.jpg" width=200  height=370> <img src="https://user-images.githubusercontent.com/62480395/159375138-bc9676c0-d9b7-455e-95a2-d2b4ff37f494.jpg" width=200  height=370> <img src="https://user-images.githubusercontent.com/62480395/159375402-5fad4ed7-3b10-4e56-9fac-72f3f4401528.jpg" width=200  height=370>
+<img src="https://user-images.githubusercontent.com/62480395/159375348-5619d0d9-1b29-4b77-b248-a3a3a5228899.jpg" width=200  height=370> <img src="https://user-images.githubusercontent.com/62480395/159375138-bc9676c0-d9b7-455e-95a2-d2b4ff37f494.jpg" width=200  height=370> <img src="https://user-images.githubusercontent.com/62480395/159375402-5fad4ed7-3b10-4e56-9fac-72f3f4401528.jpg" width=200  height=370> <img src="https://user-images.githubusercontent.com/62480395/159377753-a27ec637-ee8c-47d8-b413-56ab8f1f8a51.jpg" width=200  height=370>
 
 # Built With
 - **Kotlin** --> Official programming language for Android development.
