@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             // الميثود دي علشان الفراجمنت تسمع التغيير اللي حصل
 //            destination.id==R.id.homeFragment
-           navView.isVisible=(destination.id==R.id.homeFragment)
+          navView.isVisible=(destination.id==R.id.homeFragment)
         }
 
     }

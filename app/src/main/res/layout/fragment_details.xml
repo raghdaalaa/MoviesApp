@@ -7,7 +7,7 @@
     tools:context=".ui.details.DetailsFragment">
 <FrameLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <com.flaviofaria.kenburnsview.KenBurnsView
         android:id="@+id/moviesBackGroundImage"
@@ -60,35 +60,6 @@
                     app:layout_constraintEnd_toStartOf="@id/currentPointTextView"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/d"-->
-                <!--                    android:layout_width="38sp"-->
-                <!--                    android:layout_height="18sp"-->
-                <!--                    android:layout_marginTop="5dp"-->
-                <!--                    android:background="@drawable/textview_border"-->
-                <!--                    android:padding="3sp"-->
-                <!--                    android:text="3D"-->
-                <!--                    android:textAlignment="center"-->
-                <!--                    android:textColor="@color/dark_col"-->
-                <!--                    android:textSize="9dp"-->
-                <!--                    app:layout_constraintStart_toStartOf="@id/title_tv"-->
-                <!--                    app:layout_constraintTop_toBottomOf="@+id/title_tv" />-->
-
-                <!--                <TextView-->
-                <!--                    android:layout_width="40sp"-->
-                <!--                    android:layout_height="18sp"-->
-                <!--                    android:layout_marginStart="12dp"-->
-                <!--                    android:layout_marginTop="5dp"-->
-                <!--                    android:background="@drawable/imax_border"-->
-                <!--                    android:padding="3sp"-->
-                <!--                    android:text="iMAX"-->
-                <!--                    android:textAlignment="center"-->
-                <!--                    android:textColor="@color/yell_col"-->
-                <!--                    android:textSize="9sp"-->
-                <!--                    app:layout_constraintStart_toEndOf="@id/d"-->
-                <!--                    app:layout_constraintTop_toBottomOf="@+id/title_tv" />-->
 
                 <TextView
                     android:id="@+id/currentPointTextView"
@@ -185,78 +156,7 @@ accidentally into the mysterious tennel -they
 went to another strange..."
                 android:textColor="@color/gray1_col" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-<!--                <Button-->
-<!--                    android:id="@+id/collect_tv"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_margin="10dp"-->
-<!--                    android:text="Collect"-->
-<!--                    android:layout_marginEnd="50dp"-->
-<!--                    android:textStyle="bold" />-->
-
-<!--                <Button-->
-<!--                    android:id="@+id/buy_now"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_margin="10dp"-->
-<!--                    android:text="Buy now"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:textStyle="bold" />-->
-
-            </LinearLayout>
         </LinearLayout>
-
-<!--        <TextView-->
-<!--            android:id="@+id/actor_tv"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="30dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:text="Actor"-->
-<!--            android:textColor="@color/dark_col"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/intro_over_con" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/seeAllAct_tv"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            android:text="see all"-->
-<!--            android:textColor="@color/dark_col"-->
-<!--            android:layout_marginEnd="30dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/intro_over_con"/>-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/see_all_arraw"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/intro_over_con"-->
-<!--            android:background="@drawable/arrow_right_24"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginStart="5dp"-->
-<!--            app:layout_constraintStart_toEndOf="@id/seeAllAct_tv"/>-->
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/actor_rv"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="@id/actor_tv"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/actor_tv"/>-->
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

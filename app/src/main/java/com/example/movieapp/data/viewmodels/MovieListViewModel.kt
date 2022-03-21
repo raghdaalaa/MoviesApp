@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movieapp.BuildConfig
 import com.example.movieapp.data.api.model.MovieDetails
 import com.example.movieapp.data.api.model.MovieResponseModel
 import com.example.movieapp.ui.home.HomeRepository
@@ -64,6 +65,7 @@ class MovieListViewModel() : ViewModel() {
                         //set --> ui مش بتشتغل في الباج جراوند فمحتاجين نعمل سوتش لل
                     }
                 } else
+                    if (BuildConfig.DEBUG)
                     Log.d(TAG, "getMovies: " + it.code())
             }.onFailure {
                 Log.d(TAG, "getMovies: ${it.message}")

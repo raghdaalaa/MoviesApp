@@ -14,7 +14,6 @@ class FavoriteRepository {
     companion object{
 
         var favoriteDatabase: FavoriteDatabase?=null
-        var favoriteList: LiveData<List<MovieDetails>?>?=null
 
 
         fun initializeDB(context: Context) : FavoriteDatabase {
@@ -30,13 +29,10 @@ class FavoriteRepository {
             }
         }
 
-        fun getMoviesFromDB(context: Context) : LiveData<List<MovieDetails>?>? {
+       suspend fun getMoviesFromDB(context: Context) : LiveData<List<MovieDetails>?>? {
             if (favoriteDatabase == null)  // علشان ميعرفهوش كل مرة
                favoriteDatabase= initializeDB(context)
-            CoroutineScope(IO).launch {
-                 favoriteList= favoriteDatabase?.movieDao()?.getAllFavMovies()
-            }
-            return favoriteList
+               return  favoriteDatabase?.movieDao()?.getAllFavMovies()
         }
 
         fun deleteMoviesFromDB(context: Context,movieId:Int){

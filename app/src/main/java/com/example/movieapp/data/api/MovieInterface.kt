@@ -28,11 +28,6 @@ interface MovieInterface {
         @Query("api_key") api_key: String
     ): Response<MovieDetails>
 
-    @GET("movie/{movie_id}?")
-    suspend fun getMovieCountry(
-        @Path("movie_id") movie_id: Int,
-        @Query("api_key") api_key: String
-    ): Response<ProductionCompany>
 
     @GET("movie/{movie_id}/videos?")
    suspend fun getVideoTrailer(
@@ -45,4 +40,10 @@ interface MovieInterface {
        @Query("api_key") api_key: String,
        @Query("query") query:String
    ):Response<SearchMoviesResponse>
+
+   @GET("person/{person_id}")
+   suspend fun actor(
+       @Path("person_id") person_id: Int,
+       @Query("api_key") api_key: String,
+   ):Response<CastResult>
 }

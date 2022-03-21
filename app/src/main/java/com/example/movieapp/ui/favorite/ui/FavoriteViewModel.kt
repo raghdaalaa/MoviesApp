@@ -22,7 +22,6 @@ var favoriteList: LiveData<ArrayList<MovieDetails>>?=null
 
     private val TAG = "FavoriteViewModel"
   // var movies= LiveData<ArrayList<Result>>()
-    var movies= MutableLiveData<ArrayList<MovieDetails>?>()
     var fav =MutableLiveData<Boolean>()
 
 
@@ -36,11 +35,14 @@ fun deleteMovie(context: Context, movieId:Int){
     FavoriteRepository.deleteMoviesFromDB(context,movieId)
 }
 
-fun getMovies(context: Context) {
-    
-    //movies.postValue(FavoriteRepository.getMoviesFromDB(context)) --> if it mutable
-    movies.postValue(FavoriteRepository.getMoviesFromDB(context)?.value as ArrayList<MovieDetails>?)
+suspend fun getMovies(context: Context):LiveData<List<MovieDetails>?>? {
+//    var movies:LiveData<List<MovieDetails>?>?=null
 
+    //movies.postValue(FavoriteRepository.getMoviesFromDB(context)) --> if it mutable
+//    viewModelScope.launch(Dispatchers.IO) {
+        return FavoriteRepository.getMoviesFromDB(context)
+//    }
+//    return movies
 }
 
     fun isFav(movieId:Int){
@@ -53,4 +55,7 @@ fun getMovies(context: Context) {
        // FavoriteRepository.isFavorite(movieId)
       //  FavoriteRepository.fav.postValue(FavoriteRepository.favoriteDatabase?.movieDao()?.isFavorite(movieId)?.equals(null)==false)
     }
+
+
+
 }

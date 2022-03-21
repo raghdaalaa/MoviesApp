@@ -73,6 +73,7 @@ class CustomAdapter(val listener: OnItemClick) : RecyclerView.Adapter<CustomAdap
 
     fun clear() {
         mList?.clear()
+        notifyDataSetChanged()
     }
 //    fun setTopRated(mList:List<MovieDetails>,action: Int){
 //        this.mList=mList
@@ -95,6 +96,13 @@ class CustomAdapter(val listener: OnItemClick) : RecyclerView.Adapter<CustomAdap
                 if (bindingAdapterPosition!=-1)
                 mList?.get(bindingAdapterPosition)?.id?.let { it1 -> listener.onItemClick(it1) }
             }
+
+            movieContainer?.setOnLongClickListener {
+                if (bindingAdapterPosition!=-1)
+                mList?.get(bindingAdapterPosition)?.id?.let { it1 -> listener.onItemLongClick(it1) }
+                return@setOnLongClickListener true
+            }
+
         }
     }
 

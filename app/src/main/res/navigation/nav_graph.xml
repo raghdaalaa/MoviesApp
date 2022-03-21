@@ -40,6 +40,9 @@
         android:name="com.example.movieapp.ui.favorite.ui.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
+        <action
+          android:id="@+id/action_favoriteFragment_to_detailsFragment5"
+          app:destination="@id/detailsFragment5" />
     <fragment
         android:id="@+id/searchMovieFragment"
         android:name="com.example.movieapp.ui.search.ui.SearchMovieFragment"
